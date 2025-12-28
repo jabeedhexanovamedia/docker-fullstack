@@ -1,0 +1,11 @@
+# 1. Base image: Go + Linux
+FROM golang:1.24-alpine
+
+# 2. Set working directory inside container
+WORKDIR /app
+
+# 3. Install git (needed for go modules)
+RUN apk add --no-cache git
+
+# 4. Default command (dev)
+CMD ["go", "run", "cmd/server/main.go"]
