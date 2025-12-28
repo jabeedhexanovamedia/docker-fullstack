@@ -1,11 +1,12 @@
-# 1. Base image: Go + Linux
 FROM golang:1.24-alpine
 
-# 2. Set working directory inside container
+RUN apk add --no-cache git bash
+
+RUN go install github.com/air-verse/air@v1.52.2
+
 WORKDIR /app
 
-# 3. Install git (needed for go modules)
-RUN apk add --no-cache git
+EXPOSE 8080
 
-# 4. Default command (dev)
-CMD ["go", "run", "cmd/server/main.go"]
+CMD ["air"]
+
